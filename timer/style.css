@@ -6,9 +6,6 @@
 }
 
 body {
-    /* background: -webkit-linear-gradient(to right bottom, #8e9eab, #eef2f3);
-    background: -moz-linear-gradient(to right bottom, #8e9eab, #eef2f3);
-    background: linear-gradient(to right bottom, #8e9eab, #eef2f3); */
     background-color: #8e9eab;
 }
 
@@ -119,6 +116,12 @@ h3 {
     background-color: #0c1521;
 }
 
+#buttons :hover{
+    background-color:#323f4e;
+     cursor: pointer; 
+}
+
+
  #line{
     height: 5px;
     text-align: left;
@@ -136,25 +139,6 @@ h3 {
     padding: 5px;
 }
 
-/* #play :hover,
-#pause :hover,
-#reset :hover { */
-#buttons :hover{
-    background-color:#323f4e;
-     cursor: pointer; 
-}
 
-/* #playHover,
-#pauseHover {
-    width: 75px;
-    height: 5px;
-    display: inline-block;
-    background-color: white;
-    margin-right: 3px;
-    visibility: hidden;
-}
 
-#playHover {
-    margin-left: 165px;
-}  */
 
