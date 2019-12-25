@@ -121,17 +121,11 @@ function setWorkOrBreakTimer() {
         $('#top').toggleClass("opacity", true);
         $("#bottom").toggleClass("opacity", false);
     }
-    // else if(!isWorking){
-    //     totalTime = minutes*60;
-    //     $('#top').toggleClass("opacity", false);
-    //     $("#bottom").toggleClass("opacity", true);
-    // }
 
     else {
         isWorking = true;
         totalTime = workDisplay.textContent*60;
         $('#top').toggleClass("opacity", false);
         $("#bottom").toggleClass("opacity", true);
-        //Reset();
     }
 }

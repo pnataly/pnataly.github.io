@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title> Sudoku </title>
+    <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  </head>
+  <script language="javascript" type="text/javascript">
+
+    let puzzle, selectedSquare;
+
+    function init(num){
+        puzzle = new createSoduko(num);
+        for(let i=0; i<9; i++){
+            for(let j=0; j<9; j++){
+                let square = document.getElementById("t" + i + "x" + j);
+                if(puzzle.getSquareNumber(i,j) === 0){
+                    square.className = "empty";
+                    square.innerHTML = "";
+                    square.style.backgroundColor = "#FFFFFF";
+                    square.onclick = onClick;
+                }
+                else{
+                    square.style.backgroundColor = "#ecf4f3";
+                    square.className = 'full';
+                    square.innerHTML = puzzle.getSquareNumber(i,j);
+                }
+            }
+        }
+    }
+
+    function onClick(){
+      selectedSquare = this;
+      $(".empty").click(function(e) {
+        $("#numbers").fadeIn(100);
+        $("#numbers").offset({left: e.pageX - 78,top: e.pageY - 40});
+      });
+    }
+
+    function solve() {
+        for(let i = 0; i < 9; i++) {
+            for(let j = 0; j < 9; j++) {
+                let square = document.getElementById("t" + i + "x" + j);
+                square.innerHTML = puzzle.getSolution(i, j);
+            }
+        }
+    }
+
+    function checkForEmptyCells() {
+        for(let i = 0; i < 9; i++) {
+            for(let j = 0; j < 9; j++) {
+                let square = document.getElementById("t" + i + "x" + j);
+                if(square.innerHTML == "") return true;
+            }
+        }
+        return false;
+    }
+
+    function numberPad(value) {
+          selectedSquare.innerHTML = value;
+          let id = selectedSquare.id;
+          puzzle.setSquareNumber(id[1], id[3], value);
+          $("#numbers").fadeOut(100);
+
+          if(value == ""){
+            selectedSquare.style.backgroundColor = "#ffffff";
+            selectedSquare.className = "empty";
+          }
+          else if(puzzle.isValid(id[1], id[3]) === false){
+            selectedSquare.style.backgroundColor = "#FF0000";
+            console.log("false");      
+            console.log(selectedSquare.style.backgroundColor);
+            selectedSquare.className = "empty";
+          }
+          else{
+            selectedSquare.style.backgroundColor = "#ecf4f3";
+            selectedSquare.className = "full";
+          }
+          
+          if(checkForEmptyCells() === false){
+            swal("Good job!", "You did it!", "success");
+          }
+
+          selectedSquare = null;
+          return;
+      }
+  </script>
+
+  <body onload="init(15)">
+    <h1> Sudoku </h1>
+    <div id="options">
+      <button id="easy" onclick="init(15)"> Easy </button>
+      <button id="medium" onclick="init(25)"> Medium </button>
+      <button id="hard" onclick="init(32)"> Hard </button>
+      <button id="solve" onclick="solve()"> Solve </button>
+    </div>
+
+    <div id="numbers"> 
+        <div>
+          <span id="n1" class='padNumbers' value='1' onclick="numberPad(1)">1</span>
+          <span id="n2" class='padNumbers' value='2' onclick="numberPad(2)">2</span>
+          <span id="n3" class='padNumbers' value='3' onclick="numberPad(3)">3</span>
+          <span id="n4" class='padNumbers' value='4' onclick="numberPad(4)">4</span>
+          <span id="n5" class='padNumbers' value='5' onclick="numberPad(5)">5</span>
+        </div>
+        <div>
+          <span id="n6" class='padNumbers' value='6'  onclick="numberPad(6)">6</span>
+          <span id="n7" class='padNumbers' value='7'  onclick="numberPad(7)">7</span>
+          <span id="n8" class='padNumbers' value='8'  onclick="numberPad(8)">8</span>
+          <span id="n9" class='padNumbers' value='9'  onclick="numberPad(9)">9</span>
+          <span id="nx" class='padNumbers' value='x'  onclick="numberPad('')">x</span>
+        </div>
+    </div>
+
+    <table class="inner" class="container" align="center" id="grid">
+      <tr>
+        <td id='t0x0'></td><td id='t0x1'></td><td id='t0x2'></td>
+        <td id='t0x3'></td><td id='t0x4'></td><td id='t0x5'></td>
+        <td id='t0x6'></td><td id='t0x7'></td><td id='t0x8'></td>
+      </tr>
+      <tr>
+        <td id='t1x0'></td><td id='t1x1'></td><td id='t1x2'></td>
+        <td id='t1x3'></td><td id='t1x4'></td><td id='t1x5'></td>
+        <td id='t1x6'></td><td id='t1x7'></td><td id='t1x8'></td>
+      </tr>
+      <tr>
+        <td id='t2x0'></td><td id='t2x1'></td><td id='t2x2'></td>
+        <td id='t2x3'></td><td id='t2x4'></td><td id='t2x5'></td>
+        <td id='t2x6'></td><td id='t2x7'></td><td id='t2x8'></td>
+      </tr>
+
+
+      <tr>
+        <td id='t3x0'></td><td id='t3x1'></td><td id='t3x2'></td>
+        <td id='t3x3'></td><td id='t3x4'></td><td id='t3x5'></td>
+        <td id='t3x6'></td><td id='t3x7'></td><td id='t3x8'></td>
+      </tr>
+      <tr>
+        <td id='t4x0'></td><td id='t4x1'></td><td id='t4x2'></td>
+        <td id='t4x3'></td><td id='t4x4'></td><td id='t4x5'></td>
+        <td id='t4x6'></td><td id='t4x7'></td><td id='t4x8'></td>
+      </tr>
+      <tr>
+        <td id='t5x0'></td><td id='t5x1'></td><td id='t5x2'></td>
+        <td id='t5x3'></td><td id='t5x4'></td><td id='t5x5'></td>
+        <td id='t5x6'></td><td id='t5x7'></td><td id='t5x8'></td>
+      </tr>
+
+
+      <tr>
+        <td id='t6x0'></td><td id='t6x1'></td><td id='t6x2'></td>
+        <td id='t6x3'></td><td id='t6x4'></td><td id='t6x5'></td>
+        <td id='t6x6'></td><td id='t6x7'></td><td id='t6x8'></td>
+      </tr>
+      <tr>
+        <td id='t7x0'></td><td id='t7x1'></td><td id='t7x2'></td>
+        <td id='t7x3'></td><td id='t7x4'></td><td id='t7x5'></td>
+        <td id='t7x6'></td><td id='t7x7'></td><td id='t7x8'></td>
+      </tr>
+      <tr>
+        <td id='t8x0'></td><td id='t8x1'></td><td id='t8x2'></td>
+        <td id='t8x3'></td><td id='t8x4'></td><td id='t8x5'></td>
+        <td id='t8x6'></td><td id='t8x7'></td><td id='t8x8'></td>
+      </tr>
+    </table>
+  </body>
+
+  <script src="script.js"> </script>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  </html>
