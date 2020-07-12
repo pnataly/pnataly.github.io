@@ -1,6 +1,8 @@
 # ETCH-A-SKETCH
 
-This repository is for the Etch-a-Sketch Project from The Odin Project - [View in browser](https://pnataly.github.io/ETCH-A-SKETCH/)
-=======
+from [The Odin Project](https://www.theodinproject.com/courses/web-development-101/lessons/etch-a-sketch-project) 
+
+[View in browser](https://pnataly.github.io/ETCH-A-SKETCH/)
+
 
 
