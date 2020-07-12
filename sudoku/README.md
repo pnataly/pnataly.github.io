@@ -4,5 +4,9 @@ The goal of Sudoku is to fill in a 9×9 grid with digits so that each column, ro
 
 - contatin 3 levels difficulty.
 
+Screenshot
+----
+[![Screenshot-from-2020-07-12-16-31-39.png](https://i.postimg.cc/mZvjSzNd/Screenshot-from-2020-07-12-16-31-39.png)](https://postimg.cc/7bNSHLR7)
+
 [View in browser](https://pnataly.github.io/sudoku/)
 
